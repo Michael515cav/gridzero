@@ -38,7 +38,7 @@ The compositeScore should be a weighted average of the 6 vectors. Be accurate an
     const response = await client.messages.create({
       model: 'claude-sonnet-4-20250514',
       max_tokens: 1200,
-      tools: [{ type: 'web_search_20250305' as 'web_search_20250305', name: 'web_search' }],
+      tools: [{ type: 'web_search_20250305', name: 'web_search' }] as any,
       messages: [{ role: 'user', content: prompt }],
     })
 

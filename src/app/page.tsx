@@ -1,4 +1,5 @@
 import DefconSection from '@/components/DefconSection'
+import Link from 'next/link'
 import NavAlert from '@/components/NavAlert'
 import LiveTicker from '@/components/LiveTicker'
 
@@ -12,30 +13,30 @@ const THREATS = [
 ]
 
 const GEAR = [
-  { icon: '💧', badge: 'Essential', badgeClass: '', title: 'Water Filtration', desc: 'Gravity filters, UV purifiers, and long-term storage solutions for a family of four over 90 days.' },
-  { icon: '🔋', badge: 'Power',     badgeClass: 'amber', title: 'Off-Grid Power', desc: 'Solar arrays, hand-crank generators, deep-cycle batteries, and EMP-hardened Faraday storage.' },
-  { icon: '🌾', badge: 'Essential', badgeClass: '', title: 'Food Storage', desc: 'Freeze-dried, mylar-sealed, and calorie-dense options with rotation systems and shelf-life tracking.' },
-  { icon: '📻', badge: 'Comms',     badgeClass: 'amber', title: 'Communications', desc: 'HAM radios, shortwave receivers, GMRS handhelds, and mesh network devices for off-grid contact.' },
-  { icon: '🩹', badge: 'Medical',   badgeClass: 'neutral', title: 'Medical Kits', desc: 'Trauma kits, antibiotics, suturing supplies, and long-term medication planning when clinics go dark.' },
-  { icon: '🏕️', badge: 'Shelter',  badgeClass: 'neutral', title: 'Bugout & Shelter', desc: 'Bugout bags, tents, sleeping systems, and modular bunker solutions for short and extended scenarios.' },
+  { icon: '💧', badge: 'Essential', badgeClass: '', slug: 'water-filtration', title: 'Water Filtration', desc: 'Gravity filters, UV purifiers, and long-term storage solutions for a family of four over 90 days.' },
+  { icon: '🔋', badge: 'Power',     badgeClass: 'amber', slug: 'off-grid-power', title: 'Off-Grid Power', desc: 'Solar arrays, hand-crank generators, deep-cycle batteries, and EMP-hardened Faraday storage.' },
+  { icon: '🌾', badge: 'Essential', badgeClass: '', slug: 'food-storage', title: 'Food Storage', desc: 'Freeze-dried, mylar-sealed, and calorie-dense options with rotation systems and shelf-life tracking.' },
+  { icon: '📻', badge: 'Comms',     badgeClass: 'amber', slug: 'communications', title: 'Communications', desc: 'HAM radios, shortwave receivers, GMRS handhelds, and mesh network devices for off-grid contact.' },
+  { icon: '🩹', badge: 'Medical',   badgeClass: 'neutral', slug: 'medical-kits', title: 'Medical Kits', desc: 'Trauma kits, antibiotics, suturing supplies, and long-term medication planning when clinics go dark.' },
+  { icon: '🏕️', badge: 'Shelter',  badgeClass: 'neutral', slug: 'bugout-shelter', title: 'Bugout & Shelter', desc: 'Bugout bags, tents, sleeping systems, and modular bunker solutions for short and extended scenarios.' },
 ]
 
 const GUIDES = [
-  { num: '001', title: 'The 72-Hour Survival Plan', level: 'Beginner', time: '12 min read' },
-  { num: '002', title: 'Building a 1-Year Food Reserve', level: 'Intermediate', time: '24 min read' },
-  { num: '003', title: 'EMP Hardening Your Home', level: 'Advanced', time: '18 min read' },
-  { num: '004', title: 'Off-Grid Water: Sourcing & Purification', level: 'Intermediate', time: '15 min read' },
-  { num: '005', title: 'Bugging Out vs. Sheltering In Place', level: 'Beginner', time: '10 min read' },
-  { num: '006', title: 'HAM Radio Licensing Fast Track', level: 'Intermediate', time: '20 min read' },
-  { num: '007', title: 'Medical Preparedness Without a Doctor', level: 'Advanced', time: '30 min read' },
-  { num: '008', title: 'Prepper Security: Perimeter & Opsec', level: 'Advanced', time: '22 min read' },
+  { num: '001', slug: '72-hour-survival-plan', title: 'The 72-Hour Survival Plan', level: 'Beginner', time: '12 min read' },
+  { num: '002', slug: '1-year-food-reserve', title: 'Building a 1-Year Food Reserve', level: 'Intermediate', time: '24 min read' },
+  { num: '003', slug: 'emp-hardening', title: 'EMP Hardening Your Home', level: 'Advanced', time: '18 min read' },
+  { num: '004', slug: 'off-grid-water', title: 'Off-Grid Water: Sourcing & Purification', level: 'Intermediate', time: '15 min read' },
+  { num: '005', slug: 'bugout-vs-shelter', title: 'Bugging Out vs. Sheltering In Place', level: 'Beginner', time: '10 min read' },
+  { num: '006', slug: 'ham-radio-licensing', title: 'HAM Radio Licensing Fast Track', level: 'Intermediate', time: '20 min read' },
+  { num: '007', slug: 'medical-preparedness', title: 'Medical Preparedness Without a Doctor', level: 'Advanced', time: '30 min read' },
+  { num: '008', slug: 'prepper-security', title: 'Prepper Security: Perimeter & Opsec', level: 'Advanced', time: '22 min read' },
 ]
 
 const COMMUNITY = [
-  { stat: '14K+', label: 'Registered Members', desc: 'Active preppers across 48 states and 6 countries. Regional sub-groups for local coordination and resource sharing.' },
-  { stat: '380+', label: 'Local Cells Active', desc: 'Local preparedness groups organized by county. Meet-ups, skills training, and coordinated supply caches.' },
-  { stat: '96',   label: 'Skills Categories', desc: 'From bushcraft and HAM radio to field medicine and security operations. Find expertise you need. Share what you have.' },
-  { stat: '24/7', label: 'Intel Channel', desc: 'Members-only real-time threat monitoring, regional alerts, and curated intel drops from verified sources.' },
+  { stat: '0', label: 'Members — Just Launched', desc: 'Grid Zero just opened its doors. Be one of the founding members. Early joiners shape what this community becomes.' },
+  { stat: 'Free', label: 'Always Free to Join', desc: 'No paid tiers, no subscriptions. The network grows on signal, not paywalls.' },
+  { stat: 'Weekly', label: 'Intel Drops', desc: 'Every Monday, the AI-powered DEFCON scan runs and results go out to the list. Real data, real threats, no filler.' },
+  { stat: 'Growing', label: 'Skill Network', desc: 'As the community grows, members share skills across bushcraft, HAM radio, field medicine, security, and more.' },
 ]
 
 export default function Home() {
@@ -75,7 +76,7 @@ export default function Home() {
         </p>
         <div className="hero-actions">
           <a href="#guides" className="btn-primary">Start Prepping</a>
-          <a href="#community" className="btn-secondary">▶ Join the Network</a>
+          <Link href="/signup" className="btn-secondary">▶ Join the Network</Link>
         </div>
       </div>
 
@@ -135,13 +136,13 @@ export default function Home() {
         <h2 className="section-title condensed">Field-Tested<br />Gear</h2>
         <p className="section-desc">No sponsored junk. Every product reviewed by preppers who&apos;ve actually tested it under pressure. Affiliate links keep the lights on.</p>
         <div className="gear-grid">
-          {GEAR.map((g) => (
+          {GEAR.map((g: {icon: string; badge: string; badgeClass: string; slug: string; title: string; desc: string}) => (
             <div key={g.title} className="gear-card">
               <span className="gear-icon">{g.icon}</span>
               <div className={`gear-badge ${g.badgeClass}`}>{g.badge}</div>
               <div className="gear-title">{g.title}</div>
               <div className="gear-desc">{g.desc}</div>
-              <a href="#" className="gear-link">View Recommendations</a>
+              <Link href={`/gear/${g.slug}`} className="gear-link">View Recommendations</Link>
             </div>
           ))}
         </div>
@@ -153,15 +154,15 @@ export default function Home() {
         <h2 className="section-title condensed">Operational<br />Guides</h2>
         <p className="section-desc">Step-by-step field manuals written for real-world execution — not theory. Start with the 72-hour plan and build from there.</p>
         <div className="guides-grid">
-          {GUIDES.map((g) => (
-            <a key={g.num} href="#" className="guide-row">
+          {GUIDES.map((g: {num: string; slug: string; title: string; level: string; time: string}) => (
+            <Link key={g.num} href={`/guides/${g.slug}`} className="guide-row">
               <span className="guide-num mono">{g.num}</span>
               <div className="guide-content">
                 <div className="guide-title">{g.title}</div>
                 <div className="guide-meta">{g.level} · {g.time}</div>
               </div>
               <span className="guide-arrow">→</span>
-            </a>
+            </Link>
           ))}
         </div>
       </section>
@@ -193,7 +194,7 @@ export default function Home() {
         </p>
         <div className="cta-email-form">
           <input type="email" placeholder="your@email.com" />
-          <button type="button">Enlist</button>
+          <Link href="/signup" className="btn-primary" style={{display:"inline-block", padding:"14px 24px", fontSize:"0.85rem", letterSpacing:"0.12em", textTransform:"uppercase", textDecoration:"none"}}>Enlist</Link>
         </div>
         <p className="cta-fine mono">// No government agencies. No data brokers. Encrypted at rest.</p>
       </section>
